@@ -6,4 +6,4 @@ How to use:
 
 After that:
 
-- docker-compose up
+- docker-compose up --build -d
