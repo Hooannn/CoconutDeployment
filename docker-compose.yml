@@ -5,12 +5,6 @@ services:
     image: hoanthui123/coconutclient:latest
     ports:
       - "4173:4173"
-    environment:
-       VITE_API_ENDPOINT: https://api.cococlassroom.online/
-       VITE_FILE_HOST: https://file.cococlassroom.online
-       VITE_SOCKET_ENDPOINT: wss://socket.cococlassroom.online/
-       VITE_NODE_ENV: prod
-       VITE_GG_CLIENT_ID: 946931472697-b256pqdojtqjhaeeng9dt4804skb03st.apps.googleusercontent.com
     
   coconutserver:
     image: hoanthui123/coconutserver:latest
@@ -18,8 +12,8 @@ services:
       - "8080:8080"
       - "8081:8081"
     volumes:
-      - ./config/server/application.properties:/app/config/application.properties
-      - ./config/server/serviceAccountKey.json:/app/app/serviceAccountKey.json
+      - /home/nguyenduckhaihoan/coconut/config/server/application.properties:/app/config/application.properties
+      - /home/nguyenduckhaihoan/coconut/config/server/serviceAccountKey.json:/app/app/serviceAccountKey.json
     depends_on:
       - postgres
       - redis
@@ -40,7 +34,7 @@ services:
       - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
       - ELASTIC_PASSWORD=Y3KgattXgebGXUd
     volumes:
-      - ./.db/elasticsearch/volume:/usr/share/elasticsearch/data
+      - /home/nguyenduckhaihoan/coconut/.db/elasticsearch/volume:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -51,7 +45,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./.db/postgres/volume:/var/lib/postgresql/data
+      - /home/nguyenduckhaihoan/coconut/.db/postgres/volume:/var/lib/postgresql/data
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: default
@@ -65,7 +59,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./.db/redis/volume:/data
+      - /home/nguyenduckhaihoan/coconut/.db/redis/volume:/data
 
   seaweedfs-master:
     image: chrislusf/seaweedfs
@@ -74,7 +68,7 @@ services:
       - "19333:19333"
       - "9324:9324"
     volumes:
-      - ./.db/seaweedfs-master:/data
+      - /home/nguyenduckhaihoan/coconut/.db/seaweedfs-master:/data
     command: "master -ip=master -ip.bind=0.0.0.0 -metricsPort=9324"
 
   seaweedfs-volume:
@@ -84,7 +78,7 @@ services:
       - "18080:18080"
       - "9325:9325"
     volumes:
-      - ./.db/seaweedfs-volume:/data
+      - /home/nguyenduckhaihoan/coconut/.db/seaweedfs-volume:/data
     command: 'volume -mserver="seaweedfs-master:9333" -ip.bind=0.0.0.0 -port=8082  -metricsPort=9325'
     depends_on:
       - seaweedfs-master
