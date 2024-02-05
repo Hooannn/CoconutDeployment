@@ -25,3 +25,5 @@ dist/
 
 /.db
 /config
+
+.DS_Store

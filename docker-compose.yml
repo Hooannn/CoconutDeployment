@@ -3,9 +3,14 @@ version: "3.9"
 services:
   coconutclient:
     image: hoanthui123/coconutclient:latest
-    env_file: ./config/client/.env
     ports:
       - "4173:4173"
+    environment:
+       VITE_API_ENDPOINT: https://api.cococlassroom.online/
+       VITE_FILE_HOST: https://file.cococlassroom.online
+       VITE_SOCKET_ENDPOINT: wss://socket.cococlassroom.online/
+       VITE_NODE_ENV: prod
+       VITE_GG_CLIENT_ID: 946931472697-b256pqdojtqjhaeeng9dt4804skb03st.apps.googleusercontent.com
     
   coconutserver:
     image: hoanthui123/coconutserver:latest
