@@ -14,6 +14,7 @@ services:
     volumes:
       - /home/nguyenduckhaihoan/coconut/config/server/application.properties:/app/config/application.properties
       - /home/nguyenduckhaihoan/coconut/config/server/serviceAccountKey.json:/app/app/serviceAccountKey.json
+      - /home/nguyenduckhaihoan/coconut/config/server/jitsi.pk:/app/app/src/main/resources/jitsi.pk
     depends_on:
       - postgres
       - redis
