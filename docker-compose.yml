@@ -29,6 +29,7 @@ services:
 
   elasticsearch:
     image: elasticsearch:8.10.2
+    restart: always
     environment:
       - bootstrap.memory_lock=true
       - discovery.type=single-node
