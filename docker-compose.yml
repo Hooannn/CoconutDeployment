@@ -12,9 +12,9 @@ services:
       - "8080:8080"
       - "8081:8081"
     volumes:
-      - /home/hoanthui123/coconut/config/server/application.properties:/app/config/application.properties
-      - /home/hoanthui123/coconut/config/server/serviceAccountKey.json:/app/app/serviceAccountKey.json
-      - /home/hoanthui123/coconut/config/server/jitsi.pk:/app/app/src/main/resources/jitsi.pk
+      - /home/hoannguyen030103/coconut/config/server/application.properties:/app/config/application.properties
+      - /home/hoannguyen030103/coconut/config/server/serviceAccountKey.json:/app/app/serviceAccountKey.json
+      - /home/hoannguyen030103/coconut/config/server/jitsi.pk:/app/app/src/main/resources/jitsi.pk
     depends_on:
       - postgres
       - redis
@@ -37,7 +37,7 @@ services:
       - ELASTIC_PASSWORD=Y3KgattXgebGXUd
       - xpack.security.enabled=false
     volumes:
-      - /home/hoanthui123/coconut/.db/elasticsearch/volume:/usr/share/elasticsearch/data
+      - /home/hoannguyen030103/coconut/.db/elasticsearch/volume:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -48,7 +48,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - /home/hoanthui123/coconut/.db/postgres/volume:/var/lib/postgresql/data
+      - /home/hoannguyen030103/coconut/.db/postgres/volume:/var/lib/postgresql/data
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: default
@@ -62,7 +62,7 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - /home/hoanthui123/coconut/.db/redis/volume:/data
+      - /home/hoannguyen030103/coconut/.db/redis/volume:/data
 
   seaweedfs-master:
     image: chrislusf/seaweedfs
@@ -71,7 +71,7 @@ services:
       - "19333:19333"
       - "9324:9324"
     volumes:
-      - /home/hoanthui123/coconut/.db/seaweedfs-master:/data
+      - /home/hoannguyen030103/coconut/.db/seaweedfs-master:/data
     command: "master -ip=master -ip.bind=0.0.0.0 -metricsPort=9324"
 
   seaweedfs-volume:
@@ -81,7 +81,7 @@ services:
       - "18080:18080"
       - "9325:9325"
     volumes:
-      - /home/hoanthui123/coconut/.db/seaweedfs-volume:/data
+      - /home/hoannguyen030103/coconut/.db/seaweedfs-volume:/data
     command: 'volume -mserver="seaweedfs-master:9333" -ip.bind=0.0.0.0 -port=8082  -metricsPort=9325'
     depends_on:
       - seaweedfs-master
